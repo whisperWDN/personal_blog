@@ -29,7 +29,9 @@ class Article(models.Model):
     commented_count = models.IntegerField(verbose_name='评论次数', default=0)
     # 修改时间
     up_time = models.DateTimeField(auto_now=True, verbose_name="上次修改时间")
+    # 文章状态
     status = models.CharField(verbose_name='当前状态', choices=ARTICLE_STATUS, default='0')
+    # 文章作者
     author = models.ForeignKey('author.Author', on_delete=models.CASCADE)
 
     class Meta:

@@ -50,3 +50,24 @@ class Author(models.Model):
 
     def __str__(self):
         return '账号:{};昵称:{};姓名:{}'.format(self.username, self.nickname, self.realname)
+
+
+class AuthorProfile(models.Model):
+    # 编号
+    id = models.UUIDField(primary_key=True, verbose_name='扩展资料编号', auto_created=True, default=uuid4)
+    # 粉丝数量
+    fans_count = models.IntegerField(verbose_name='粉丝数量', default=0)
+    # 访问数量
+    visited_count = models.IntegerField(verbose_name='访问数量', default=0)
+    # 文章字数
+    words_count = models.IntegerField(verbose_name='文章字数', default=0)
+    # 文章篇数
+    article_count = models.IntegerField(verbose_name='文章篇数', default=0)
+    # 收藏总数
+    collected_count = models.IntegerField(verbose_name='收藏总数', default=0)
+    # 喜欢总数
+    liked_count = models.IntegerField(verbose_name='喜欢总数', default=0)
+    # 点赞总数
+    admired_count = models.IntegerField(verbose_name='点赞总数', default=0)
+    # 关联用户
+    author = models.OneToOneField(Author, on_delete=models.CASCADE)
