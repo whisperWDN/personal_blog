@@ -44,6 +44,14 @@ class Author(models.Model):
     intro = models.TextField(verbose_name='个人介绍')
     # 备注信息
     remark = models.TextField(verbose_name='备注信息')
+    # 喜欢的文章
+    articles_liked = models.ManyToManyField('article.Article', related_name='articleliked')
+    # 收藏的文章
+    articles_collected = models.ManyToManyField('article.Article', related_name='articlecollected')
+    # 喜欢的作者
+    authors_liked = models.ManyToManyField('self', related_name='author')
+    # 特别喜欢的作者
+    authors_liked  = models.OneToOneField('self', on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = '作者'
